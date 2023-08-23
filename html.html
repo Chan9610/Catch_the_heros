@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch The Cheems</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="screen" id="screen1">
+            <h2>Catch The Character</h2>
+            <button id="start">Start The Game</button>
+        </div>
+        <div class="screen" id="screen2">
+            <div class="photo-wrapper">
+                <a href=""><img src="hulk-39-1-1024x820.png" alt="hulk"></a>
+                <a href=""><img src="nagraj.png" alt="nagraj"></a>
+                <a href=""><img src="shaktimaan.png" alt="shaktimaan"></a>
+            </div>
+        </div>
+        <div class="screen" id="screen3">
+            <div class="top">
+                <p id="timer">Time: <span id="time1">0</span></p>
+                <p id="score">Score: <span id="score1" >0</span></p>
+                
+            </div>
+            <div class="main"></div>
+        </div>
+    </div>
+
+
+    
+</body>
+
+</html>
+
+<script>
+  let screen1=document.getElementById("screen1");
+  let screen2=document.getElementById("screen2");
+  let screen3=document.getElementById("screen3");
+  let main = document.querySelector(".main");
+  let btn = document.getElementById("start");
+  let time = document.getElementById("time1");
+  let score = document.getElementById("score1");
+  let hero = document.querySelectorAll("img")
+
+  // console.log(hero);
+ let heroes=""
+ let Time=""
+
+  btn.onclick=()=>{
+    screen1.style.display="none";
+    screen2.style.display="block";
+  }
+
+  for(let i=0; i<hero.length;i++){
+    hero[i].onclick=(e)=>{
+      e.preventDefault()
+      screen2.style.display="none"
+      screen3.style.display="block"
+
+      heroes=hero[i]
+
+      startgame()
+      }
+  }
+  function startgame(){
+    let interval = setInterval(function(){
+      let imgg = document.createElement("img")
+      imgg.src=heroes.src
+      main.insertAdjacentElement("beforeend",imgg)
+      let height = screen3.clientHeight
+      let width = screen3.clientWidth
+
+      let X = Math.random()*height
+      let Y = Math.random()*width
+
+      imgg.style.top=X+"px"
+      imgg.style.left=Y+"px"
+    },1000)
+
+
+  }
+
+</script>
